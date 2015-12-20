@@ -20,8 +20,16 @@ hist(total,main="Histogram of Total number of steps per day",xlab="Total number 
 ![](PA1_template_files/figure-html/mean_totalsteps-1.png) 
 
 ```r
-options("scipen"=999)
+dev.copy(png,'plot1.png')
+```
 
+```
+## png 
+##   3
+```
+
+```r
+options("scipen"=999)
 #Print Mean and Median
 mean_total<-mean(total,na.rm=TRUE)
 mean_total
@@ -52,6 +60,15 @@ plot(rownames(sub2_data),sub2_data[,1],type="l",main="Average daily activity pat
 ```
 
 ![](PA1_template_files/figure-html/avg_daily_activity-1.png) 
+
+```r
+dev.copy(png,'plot2.png')
+```
+
+```
+## png 
+##   4
+```
 
 ```r
 #Find interval with max number of steps
@@ -86,6 +103,15 @@ hist(new_total,main="Histogram of Total number of steps per day",xlab="Total num
 ```
 
 ![](PA1_template_files/figure-html/input_NA-1.png) 
+
+```r
+dev.copy(png,'plot3.png')
+```
+
+```
+## png 
+##   5
+```
 
 ```r
 #Mean and median
@@ -147,15 +173,28 @@ s1_data$wday<-rep(c("weekday"),nrow(s1_data))
 s2_data<-as.data.frame(s2_data)
 s2_data$wday<-rep(c("weekend"),nrow(s2_data))
 
-#Plot weekday data
+#Plot weekday and weekend data
+par(mfrow=c(2,1))
 plot(rownames(s1_data),s1_data[,1],type="l",col="red",main = "Average activity patterns on Weekdays",xlab="Interval",ylab="Avg number of steps")
+plot(rownames(s2_data),s2_data[,1],type="l",col="green",main = "Average activity patterns on Weekends",xlab="Interval",ylab="Avg number of steps")
 ```
 
 ![](PA1_template_files/figure-html/weekday_weekend-1.png) 
 
 ```r
-#Plot weekend data
-plot(rownames(s2_data),s2_data[,1],type="l",col="green",main = "Average activity patterns on Weekends",xlab="Interval",ylab="Avg number of steps")
+dev.copy(png,'plot4.png')
 ```
 
-![](PA1_template_files/figure-html/weekday_weekend-2.png) 
+```
+## png 
+##   6
+```
+
+```r
+dev.off()
+```
+
+```
+## png 
+##   2
+```

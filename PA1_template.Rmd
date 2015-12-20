@@ -18,8 +18,9 @@ total<-tapply(data$steps,data$date,sum)
 
 #Plot histogram
 hist(total,main="Histogram of Total number of steps per day",xlab="Total number of steps",col="orange")
-options("scipen"=999)
+dev.copy(png,'plot1.png')
 
+options("scipen"=999)
 #Print Mean and Median
 mean_total<-mean(total,na.rm=TRUE)
 mean_total
@@ -35,6 +36,7 @@ sub2_data<-as.data.frame(sub_data)
 
 #Plot
 plot(rownames(sub2_data),sub2_data[,1],type="l",main="Average daily activity pattern",xlab="Interval",ylab="Avg number of steps",col="magenta")
+dev.copy(png,'plot2.png')
 
 #Find interval with max number of steps
 which.max(sub2_data[,1])
@@ -53,6 +55,8 @@ new_data[is.na(new_data)]<-mean_total
 #Plotting a histogram
 new_total<-tapply(new_data$steps,new_data$date,sum)
 hist(new_total,main="Histogram of Total number of steps per day",xlab="Total number of steps",col="blue")
+dev.copy(png,'plot3.png')
+
 
 #Mean and median
 new_mean<-mean(new_total,na.rm=TRUE)
@@ -86,9 +90,10 @@ s1_data$wday<-rep(c("weekday"),nrow(s1_data))
 s2_data<-as.data.frame(s2_data)
 s2_data$wday<-rep(c("weekend"),nrow(s2_data))
 
-#Plot weekday data
+#Plot weekday and weekend data
+par(mfrow=c(2,1))
 plot(rownames(s1_data),s1_data[,1],type="l",col="red",main = "Average activity patterns on Weekdays",xlab="Interval",ylab="Avg number of steps")
-
-#Plot weekend data
 plot(rownames(s2_data),s2_data[,1],type="l",col="green",main = "Average activity patterns on Weekends",xlab="Interval",ylab="Avg number of steps")
+dev.copy(png,'plot4.png')
+dev.off()
 ```
