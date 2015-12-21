@@ -1,3 +1,5 @@
+#Please note the png plots are separate in the figure folder
+
 ## Introduction
 
 It is now possible to collect a large amount of data about personal
